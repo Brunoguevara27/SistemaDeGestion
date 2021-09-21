@@ -161,7 +161,7 @@ public class Principal extends javax.swing.JFrame {
         itemModificarProd.setBackground(new java.awt.Color(255, 255, 255));
         itemModificarProd.setForeground(new java.awt.Color(0, 0, 0));
         itemModificarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificarProd.png"))); // NOI18N
-        itemModificarProd.setText("Modificar Productos");
+        itemModificarProd.setText("Modificar / Eliminar Productos");
         itemModificarProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemModificarProdActionPerformed(evt);
