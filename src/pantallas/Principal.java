@@ -11,6 +11,7 @@ public class Principal extends javax.swing.JFrame {
     Facturas facturas = new Facturas();
     ConsultaProductos consultaProductos = new ConsultaProductos();
     ModificarProductos modificarProductos = new ModificarProductos();
+    RealizarCompra realizarCompra = new RealizarCompra();
 
     public Principal() {
         initComponents();
@@ -57,6 +58,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jBarraNav = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        itemRealizarCompra = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         itemProductos = new javax.swing.JMenuItem();
         itemModificarProd = new javax.swing.JMenuItem();
@@ -138,8 +140,20 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu1.setBackground(new java.awt.Color(255, 255, 255));
         jMenu1.setForeground(new java.awt.Color(0, 0, 0));
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/archivo.png"))); // NOI18N
-        jMenu1.setText("Archivo");
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/compra.png"))); // NOI18N
+        jMenu1.setText("Compra");
+
+        itemRealizarCompra.setBackground(new java.awt.Color(255, 255, 255));
+        itemRealizarCompra.setForeground(new java.awt.Color(0, 0, 0));
+        itemRealizarCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/realizarCompra.png"))); // NOI18N
+        itemRealizarCompra.setText("Realizar Compra");
+        itemRealizarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemRealizarCompraActionPerformed(evt);
+            }
+        });
+        jMenu1.add(itemRealizarCompra);
+
         jBarraNav.add(jMenu1);
 
         jMenu2.setBackground(new java.awt.Color(255, 255, 255));
@@ -346,6 +360,18 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_itemModificarProdActionPerformed
 
+    private void itemRealizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRealizarCompraActionPerformed
+        if(realizarCompra.isShowing()){
+            System.out.println("Ya esta en pantalla");
+        } else{
+            jdpEscritorio.add(realizarCompra);
+            Dimension jdpSize = jdpEscritorio.getSize();
+            Dimension FrameSize = realizarCompra.getSize();
+            realizarCompra.setLocation((jdpSize.width - FrameSize.width) / 2, (jdpSize.height - FrameSize.height) / 2);
+            realizarCompra.show();
+        }
+    }//GEN-LAST:event_itemRealizarCompraActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -387,6 +413,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemFacturas;
     private javax.swing.JMenuItem itemModificarProd;
     public static javax.swing.JMenuItem itemProductos;
+    private javax.swing.JMenuItem itemRealizarCompra;
     private javax.swing.JMenuItem itemUsuarios;
     public static javax.swing.JMenuBar jBarraNav;
     private javax.swing.JLabel jLabel1;

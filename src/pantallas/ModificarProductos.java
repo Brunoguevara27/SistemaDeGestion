@@ -26,13 +26,13 @@ public class ModificarProductos extends javax.swing.JInternalFrame {
         SentenciasSql sentenciasSql = new SentenciasSql();
         Connection con = sentenciasSql.conectar();
         DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
-        String sqlBox = "SELECT descripcion_pro FROM productos";
+        String sqlBox = "SELECT descripcion_prod FROM productos";
         Statement stmt;
         try {
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sqlBox);
             while (rs.next()) {
-                listaModelo.addElement(rs.getString("descripcion_pro"));
+                listaModelo.addElement(rs.getString("descripcion_prod"));
             }
             rs.close();
         } catch (SQLException ex) {
@@ -43,7 +43,7 @@ public class ModificarProductos extends javax.swing.JInternalFrame {
 
     public void eliminarProd(String producto) {
 
-        String sql = "DELETE FROM productos WHERE `descripcion_pro` = '" + producto + "'";
+        String sql = "DELETE FROM productos WHERE `descripcion_prod` = '" + producto + "'";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(sql);
@@ -55,7 +55,7 @@ public class ModificarProductos extends javax.swing.JInternalFrame {
 
     public void modificarProd() {
         String producto = (String) prodModificar.getSelectedItem();
-        String sql = "SELECT * FROM productos WHERE descripcion_pro = '" + producto + "'";
+        String sql = "SELECT * FROM productos WHERE descripcion_prod = '" + producto + "'";
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -75,7 +75,7 @@ public class ModificarProductos extends javax.swing.JInternalFrame {
         String descripcionProd = txDescripcionProd.getText();
         String precioProd = txPrecioProd.getText();
         String stockProd = txStockProd.getText();
-        String sqlModificar = "UPDATE productos SET cod_prod='" + codigoProd + "',descripcion_pro='" + descripcionProd + "',precio_pro='" + precioProd + "',stock='" + stockProd + "' WHERE descripcion_pro = '" + descripcionProd + "'";
+        String sqlModificar = "UPDATE `productos` SET `cod_prod`='"+codigoProd+"',`descripcion_prod`='"+descripcionProd+"',`precio_prod`='"+precioProd+"',`stock_prod`='"+stockProd+"'";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(sqlModificar);

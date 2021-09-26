@@ -22,7 +22,7 @@ public class ConsultaProductos extends javax.swing.JInternalFrame {
             String[] titulosTabla = {"Código", "Descripción", "Precio", "Stock"};
             String[] registrosBD = new String[4];
             modelo = new DefaultTableModel(null, titulosTabla);
-            String consultaSql = "SELECT * FROM productos WHERE cod_prod LIKE '%" + codProducto + "%' AND descripcion_Pro LIKE '%" + descripcionProd + "%'";
+            String consultaSql = "SELECT * FROM productos WHERE cod_prod LIKE '%" + codProducto + "%' AND descripcion_prod LIKE '%" + descripcionProd + "%'";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(consultaSql);
             while (rs.next()) {
