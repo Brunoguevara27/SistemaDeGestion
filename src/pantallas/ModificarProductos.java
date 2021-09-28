@@ -55,15 +55,14 @@ public class ModificarProductos extends javax.swing.JInternalFrame {
 
     public void modificarProd() {
         String producto = (String) prodModificar.getSelectedItem();
-        String sql = "SELECT * FROM productos WHERE descripcion_prod = '" + producto + "'";
+        String sql = "SELECT marca_prod, descripcion_prod, precio_prod FROM productos WHERE descripcion_prod = '" + producto + "'";
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                txCodigoProd.setText(rs.getString(1));
+                txMarcaProd.setText(rs.getString(1));
                 txDescripcionProd.setText(rs.getString(2));
                 txPrecioProd.setText(rs.getString(3));
-                txStockProd.setText(rs.getString(4));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ModificarProductos.class.getName()).log(Level.SEVERE, null, ex);
@@ -71,15 +70,21 @@ public class ModificarProductos extends javax.swing.JInternalFrame {
     }
 
     public void modificarBDD() {
-        String codigoProd = txCodigoProd.getText();
+        int codProd = 0;
+        String producto = (String) prodModificar.getSelectedItem();
+        String marcaProd = txMarcaProd.getText();
         String descripcionProd = txDescripcionProd.getText();
         String precioProd = txPrecioProd.getText();
-        String stockProd = txStockProd.getText();
-        String sqlModificar = "UPDATE `productos` SET `cod_prod`='"+codigoProd+"',`descripcion_prod`='"+descripcionProd+"',`precio_prod`='"+precioProd+"',`stock_prod`='"+stockProd+"'";
         try {
             Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT cod_prod FROM productos WHERE descripcion_prod = '" + producto + "'");
+            while (rs.next()) {
+                codProd = rs.getInt("cod_prod");
+            }
+            String sqlModificar = "UPDATE `productos` SET `marca_prod`='" + marcaProd + "',`descripcion_prod`='" + descripcionProd + "',`precio_prod`='" + precioProd + "' WHERE cod_prod = '" + codProd + "'";
             stmt.executeUpdate(sqlModificar);
             JOptionPane.showMessageDialog(null, "Producto modificado con exito!", "Guardado", JOptionPane.OK_OPTION);
+
         } catch (SQLException ex) {
             Logger.getLogger(ModificarProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -97,11 +102,9 @@ public class ModificarProductos extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txCodigoProd = new javax.swing.JTextField();
+        txMarcaProd = new javax.swing.JTextField();
         txDescripcionProd = new javax.swing.JTextField();
         txPrecioProd = new javax.swing.JTextField();
-        txStockProd = new javax.swing.JTextField();
         btnModificar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -150,16 +153,13 @@ public class ModificarProductos extends javax.swing.JInternalFrame {
         });
 
         jLabel5.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel5.setText("Codigo Producto");
+        jLabel5.setText("Marca Producto");
 
         jLabel6.setBackground(new java.awt.Color(204, 204, 255));
         jLabel6.setText("Descripción");
 
         jLabel7.setBackground(new java.awt.Color(204, 204, 255));
         jLabel7.setText("Precio Producto");
-
-        jLabel8.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel8.setText("Stock Producto");
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -179,12 +179,10 @@ public class ModificarProductos extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jLabel8))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -193,9 +191,8 @@ public class ModificarProductos extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(txDescripcionProd, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txCodigoProd)
-                                            .addComponent(txPrecioProd)
-                                            .addComponent(txStockProd))
+                                            .addComponent(txMarcaProd)
+                                            .addComponent(txPrecioProd))
                                         .addGap(24, 24, 24)))))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -217,7 +214,7 @@ public class ModificarProductos extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txCodigoProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txMarcaProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -226,11 +223,7 @@ public class ModificarProductos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txPrecioProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txStockProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -380,15 +373,13 @@ public class ModificarProductos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JComboBox<String> prodEliminar;
     private javax.swing.JComboBox<String> prodModificar;
-    private javax.swing.JTextField txCodigoProd;
     private javax.swing.JTextField txDescripcionProd;
+    private javax.swing.JTextField txMarcaProd;
     private javax.swing.JTextField txPrecioProd;
-    private javax.swing.JTextField txStockProd;
     // End of variables declaration//GEN-END:variables
 }

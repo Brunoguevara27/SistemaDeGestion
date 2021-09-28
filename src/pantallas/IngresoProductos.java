@@ -25,7 +25,7 @@ public class IngresoProductos extends javax.swing.JInternalFrame {
         //Bloquear Campos
         txDescripcion.setEnabled(false);
         txPrecioProducto.setEnabled(false);
-        txStockProducto.setEnabled(false);
+        txMarcaProducto.setEnabled(false);
         //Bloquear Botones y ponerlos en color blanco
         btnGuardar.setEnabled(false);
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
@@ -39,14 +39,14 @@ public class IngresoProductos extends javax.swing.JInternalFrame {
     public void limpiarCajas() {
         txDescripcion.setText("");
         txPrecioProducto.setText("");
-        txStockProducto.setText("");
+        txMarcaProducto.setText("");
     }
 
     public void desbloquear() {
         //Desbloquear Campos
         txDescripcion.setEnabled(true);
         txPrecioProducto.setEnabled(true);
-        txStockProducto.setEnabled(true);
+        txMarcaProducto.setEnabled(true);
         //Desbloquear Botones y ponerlos en color negro al igual que los otros botones
         btnGuardar.setEnabled(true);
         btnGuardar.setForeground(new java.awt.Color(0, 0, 0));
@@ -58,20 +58,19 @@ public class IngresoProductos extends javax.swing.JInternalFrame {
 
     }
 
-    public void guardarDatos(String descripcionProd, String stockProd, String precioProd) {
+    public void guardarDatos(String descripcionProd, String marcaProd, String precioProd) {
         Connection con = sentenciasSql.conectar();
-        String sql = "INSERT INTO productos (descripcion_prod, precio_prod, stock_prod) VALUES (?,?,?)";
+        String sql = "INSERT INTO productos (descripcion_prod, precio_prod, marca_prod) VALUES (?,?,?)";
 
         try {
             PreparedStatement pstmt = con.prepareStatement(sql);
-            //pstmt.setString(1, codigoProd);
             pstmt.setString(1, descripcionProd);
             pstmt.setString(2, precioProd);
-            pstmt.setString(3, stockProd);
+            pstmt.setString(3, marcaProd);
 
             int n = pstmt.executeUpdate();
             if (n > 0) {
-                JOptionPane.showMessageDialog(null, "El registro se guardo con exito!");
+                JOptionPane.showMessageDialog(null, "El registro se guardo con exito!",null,JOptionPane.INFORMATION_MESSAGE);
                 bloquear();
             }
             //cargarDatosTabla("");
@@ -91,7 +90,7 @@ public class IngresoProductos extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         txDescripcion = new javax.swing.JTextField();
         txPrecioProducto = new javax.swing.JTextField();
-        txStockProducto = new javax.swing.JTextField();
+        txMarcaProducto = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
@@ -113,7 +112,7 @@ public class IngresoProductos extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Stock Producto");
+        jLabel4.setText("Marca Producto");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -131,7 +130,7 @@ public class IngresoProductos extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txStockProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(txMarcaProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                     .addComponent(txPrecioProducto, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txDescripcion, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -139,7 +138,11 @@ public class IngresoProductos extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txMarcaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -147,10 +150,6 @@ public class IngresoProductos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txPrecioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txStockProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -257,9 +256,9 @@ public class IngresoProductos extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String descripcionProd = txDescripcion.getText();
-        String stockProd = txStockProducto.getText();
+        String marcaProd = txMarcaProducto.getText();
         String precioProd = txPrecioProducto.getText();
-        guardarDatos(descripcionProd, stockProd, precioProd);
+        guardarDatos(descripcionProd, marcaProd, precioProd);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -280,7 +279,7 @@ public class IngresoProductos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txDescripcion;
+    private javax.swing.JTextField txMarcaProducto;
     private javax.swing.JTextField txPrecioProducto;
-    private javax.swing.JTextField txStockProducto;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,11 +8,10 @@ import javax.swing.JOptionPane;
 
 public class Principal extends javax.swing.JFrame {
 
-    Facturas facturas = new Facturas();
     ConsultaProductos consultaProductos = new ConsultaProductos();
     ModificarProductos modificarProductos = new ModificarProductos();
     RealizarCompra realizarCompra = new RealizarCompra();
-
+    ConsultaVentas consultaVentas = new ConsultaVentas();
     public Principal() {
         initComponents();
     }
@@ -56,6 +55,8 @@ public class Principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        rSLabelFecha2 = new rojeru_san.RSLabelFecha();
+        rSLabelHora2 = new rojeru_san.RSLabelHora();
         jBarraNav = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         itemRealizarCompra = new javax.swing.JMenuItem();
@@ -66,6 +67,7 @@ public class Principal extends javax.swing.JFrame {
         itemFacturas = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         itemConsultasProd = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -105,8 +107,7 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 379, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tipoDeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(tipoDeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,18 +120,38 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        rSLabelFecha2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rSLabelFecha2.setForeground(new java.awt.Color(204, 204, 204));
+        rSLabelFecha2.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+
+        rSLabelHora2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rSLabelHora2.setForeground(new java.awt.Color(204, 204, 204));
+        rSLabelHora2.setFont(new java.awt.Font("Roboto Bold", 1, 18)); // NOI18N
+
         jdpEscritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpEscritorio.setLayer(rSLabelFecha2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpEscritorio.setLayer(rSLabelHora2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdpEscritorioLayout = new javax.swing.GroupLayout(jdpEscritorio);
         jdpEscritorio.setLayout(jdpEscritorioLayout);
         jdpEscritorioLayout.setHorizontalGroup(
             jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jdpEscritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(rSLabelHora2, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                    .addComponent(rSLabelFecha2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jdpEscritorioLayout.setVerticalGroup(
             jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdpEscritorioLayout.createSequentialGroup()
-                .addGap(0, 309, Short.MAX_VALUE)
+                .addGap(0, 217, Short.MAX_VALUE)
+                .addComponent(rSLabelHora2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rSLabelFecha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -194,11 +215,6 @@ public class Principal extends javax.swing.JFrame {
         itemFacturas.setForeground(new java.awt.Color(0, 0, 0));
         itemFacturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/facturas.png"))); // NOI18N
         itemFacturas.setText("Facturas");
-        itemFacturas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemFacturasActionPerformed(evt);
-            }
-        });
         jMenu3.add(itemFacturas);
 
         jBarraNav.add(jMenu3);
@@ -218,6 +234,17 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu4.add(itemConsultasProd);
+
+        jMenuItem1.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuItem1.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/c.ventas.png"))); // NOI18N
+        jMenuItem1.setText("C. Ventas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem1);
 
         jBarraNav.add(jMenu4);
 
@@ -303,18 +330,6 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_itemProductosActionPerformed
 
-    private void itemFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFacturasActionPerformed
-        if (facturas.isShowing()) {
-            System.out.println("Ya esta en pantalla");
-        } else {
-            jdpEscritorio.add(facturas);
-            Dimension jdpSize = jdpEscritorio.getSize();
-            Dimension FrameSize = facturas.getSize();
-            facturas.setLocation((jdpSize.width - FrameSize.width) / 2, (jdpSize.height - FrameSize.height) / 2);
-            facturas.show();
-        }
-    }//GEN-LAST:event_itemFacturasActionPerformed
-
     private void itemCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCerrarSesionActionPerformed
         int i = JOptionPane.showConfirmDialog(null, "¿Seguro que desea cerrar sesión?", null, JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
         if (i == 0) {
@@ -372,6 +387,18 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_itemRealizarCompraActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        if(consultaVentas.isShowing()){
+            System.out.println("Ya esta en pantalla");
+        } else{
+            jdpEscritorio.add(consultaVentas);
+            Dimension jdpSize = jdpEscritorio.getSize();
+            Dimension FrameSize = consultaVentas.getSize();
+            consultaVentas.setLocation((jdpSize.width - FrameSize.width) / 2, (jdpSize.height - FrameSize.height) / 2);
+            consultaVentas.show();
+        }       
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -425,6 +452,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenuAdministracion;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem8;
@@ -432,6 +460,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JDesktopPane jdpEscritorio;
     public static final javax.swing.JLabel nombreUsuario = new javax.swing.JLabel();
+    private rojeru_san.RSLabelFecha rSLabelFecha2;
+    private rojeru_san.RSLabelHora rSLabelHora2;
     public static final javax.swing.JLabel tipoDeUsuario = new javax.swing.JLabel();
     // End of variables declaration//GEN-END:variables
 }

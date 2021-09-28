@@ -19,7 +19,7 @@ public class ConsultaProductos extends javax.swing.JInternalFrame {
 
     public void buscarProductos(String codProducto, String descripcionProd) {
         try {
-            String[] titulosTabla = {"Código", "Descripción", "Precio", "Stock"};
+            String[] titulosTabla = {"Código","Marca","Descripción","Precio"};
             String[] registrosBD = new String[4];
             modelo = new DefaultTableModel(null, titulosTabla);
             String consultaSql = "SELECT * FROM productos WHERE cod_prod LIKE '%" + codProducto + "%' AND descripcion_prod LIKE '%" + descripcionProd + "%'";
@@ -34,8 +34,8 @@ public class ConsultaProductos extends javax.swing.JInternalFrame {
             }
             jTableProductos.setModel(modelo);
             jTableProductos.getColumnModel().getColumn(0).setPreferredWidth(150);
-            jTableProductos.getColumnModel().getColumn(1).setPreferredWidth(350);
-            jTableProductos.getColumnModel().getColumn(2).setPreferredWidth(100);
+            jTableProductos.getColumnModel().getColumn(1).setPreferredWidth(150);
+            jTableProductos.getColumnModel().getColumn(2).setPreferredWidth(250);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -59,6 +59,7 @@ public class ConsultaProductos extends javax.swing.JInternalFrame {
         setTitle("Ingreso Clientes");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Consulta Productos");
 
@@ -68,6 +69,11 @@ public class ConsultaProductos extends javax.swing.JInternalFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Descripción Producto");
 
+        jTableProductos = new javax.swing.JTable(){
+            public boolean isCellEditable(int row, int col){
+                return false;
+            }
+        };
         jTableProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -76,6 +82,7 @@ public class ConsultaProductos extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTableProductos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableProductos);
 
         btnBuscar.setText("Buscar");
@@ -99,7 +106,7 @@ public class ConsultaProductos extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
@@ -116,14 +123,13 @@ public class ConsultaProductos extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(194, 194, 194)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(199, 199, 199))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,12 +143,12 @@ public class ConsultaProductos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txCodProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txDescripcionProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

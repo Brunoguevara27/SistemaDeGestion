@@ -97,13 +97,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel1" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -114,9 +111,8 @@
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="1" attributes="0">
                                               <Component id="txDescripcionProd" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="txCodigoProd" max="32767" attributes="0"/>
+                                              <Component id="txMarcaProd" max="32767" attributes="0"/>
                                               <Component id="txPrecioProd" max="32767" attributes="0"/>
-                                              <Component id="txStockProd" alignment="1" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                       </Group>
@@ -149,7 +145,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="txCodigoProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txMarcaProd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -161,12 +157,7 @@
                       <Component id="jLabel7" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="txPrecioProd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel8" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="txStockProd" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                  <EmptySpace pref="37" max="32767" attributes="0"/>
                   <Component id="btnModificar" min="-2" pref="32" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -220,7 +211,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Codigo Producto"/>
+            <Property name="text" type="java.lang.String" value="Marca Producto"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -239,21 +230,11 @@
             <Property name="text" type="java.lang.String" value="Precio Producto"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel8">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="cc" red="cc" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Stock Producto"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txCodigoProd">
+        <Component class="javax.swing.JTextField" name="txMarcaProd">
         </Component>
         <Component class="javax.swing.JTextField" name="txDescripcionProd">
         </Component>
         <Component class="javax.swing.JTextField" name="txPrecioProd">
-        </Component>
-        <Component class="javax.swing.JTextField" name="txStockProd">
         </Component>
         <Component class="javax.swing.JButton" name="btnModificar">
           <Properties>
